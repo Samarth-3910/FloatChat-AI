@@ -121,6 +121,7 @@ We used GCP for public access to our project.
 - [ ] Add more advanced analytical features like anomaly detection.
 
 ## 🏆 Our Team
-*   [Your Name](https://github.com/your-username)
-*   [Team Member 2](https://github.com/teammate-username)
-*   [Team Member 3](https://github.com/teammate-username)
+*   [Samarth Keshari]
+*   [Nikhil Tiwari]
+*   [Harsh Pal]
+*   [Komal Patel]

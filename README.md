@@ -112,12 +112,13 @@ We've included an auto-runner to make launching easy! It will install dependenci
 python run.py
 ```
 You can now access the application at **http://localhost:8501**.
+### You can access it on **http://34.30.11.181:8501**.
+We used GCP for public access to our project.
 
 ## 🔮 Future Work
 - [ ] Integrate real-time data streams from active ARGO floats.
 - [ ] Expand data sources to include BGC floats, gliders, and satellite datasets.
 - [ ] Add more advanced analytical features like anomaly detection.
-- [ ] Deploy the application to a cloud service (e.g., AWS, GCP) for public access.
 
 ## 🏆 Our Team
 *   [Your Name](https://github.com/your-username)

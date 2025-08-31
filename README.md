@@ -120,6 +120,7 @@ You can now access the application at **http://localhost:8501**.
 - [ ] Deploy the application to a cloud service (e.g., AWS, GCP) for public access.
 
 ## 🏆 Our Team
-*   [Your Name](https://github.com/your-username)
-*   [Team Member 2](https://github.com/teammate-username)
-*   [Team Member 3](https://github.com/teammate-username)
+*   [Samarth Keshari]
+*   [Nikhil Tiwari]
+*   [Harsh Pal]
+*   [Komal Patel]

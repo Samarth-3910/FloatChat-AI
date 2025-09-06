@@ -125,6 +125,5 @@ We used GCP for public access to our project.
 *   [Nikhil Tiwari]
 *   [Harsh Pal]
 *   [Komal Patel]
-
-# ⚠️ Do Not Copy This Code Without Permission
+*   []
 **Note:** This repository is intended for hackathon use only and is **not for public use**. Please respect this.

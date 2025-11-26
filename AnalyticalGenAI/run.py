@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Auto-runner for RAG Chat Assistant.
 - Checks required files
@@ -25,7 +24,7 @@ def check_requirements():
         return False
     print("✅ All required files found!")
     return True
-
+ 
 def install_requirements():
     print("📦 Installing requirements...")
     try:
@@ -55,7 +54,7 @@ def wait_for_backend(timeout=30):
 def run_backend():
     print("🚀 Starting backend...")
     return subprocess.Popen([sys.executable, "app.py"])
-
+ 
 def run_frontend():
     print("🌐 Starting frontend (Streamlit)...")
     return subprocess.Popen([sys.executable, "-m", "streamlit", "run", "oceanography_dashboard.py"], shell=True)

@@ -1,0 +1,27 @@
+<<<<<<< Updated upstream
+=======
+# Core Web & API
+flask
+flask-cors
+requests
+gunicorn
+
+# LangChain & AI
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-google-genai>=2.0.0
+langchain-core>=0.3.0
+google-generativeai
+chromadb
+
+# Data Handling
+pandas
+pyarrow
+numpy
+
+# Geospatial
+geopy
+
+# Utilities
+python-dotenv 
+>>>>>>> Stashed changes

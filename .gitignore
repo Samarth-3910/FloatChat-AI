@@ -1,0 +1,19 @@
+# Python venv
+venv/
+*/venv/
+
+# Chroma / vector DB storage
+chroma_db/
+*/chroma_db/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# System files
+.DS_Store
+Thumbs.db

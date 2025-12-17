@@ -23,7 +23,7 @@ app = Flask(__name__)
 CORS(app)
 
 # --- API KEY ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAihZb7s-J5NwfVWuvjpR_MtYprnZxjmow"
+os.environ["GOOGLE_API_KEY"] = ""
 
 # --- LLM Setup ---
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)

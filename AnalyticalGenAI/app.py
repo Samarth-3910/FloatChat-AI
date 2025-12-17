@@ -7,7 +7,7 @@ import json
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_classic.memory import ConversationBufferMemory
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_core.documents import Document
 import pandas as pd 
 import numpy as np
@@ -23,10 +23,10 @@ app = Flask(__name__)
 CORS(app)
 
 # --- API KEY ---
-os.environ["GOOGLE_API_KEY"] = ""
+os.environ["GOOGLE_API_KEY"] = "AIzaSyAihZb7s-J5NwfVWuvjpR_MtYprnZxjmow"
 
 # --- LLM Setup ---
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, k=5)
 
 # ---------------- SIMPLE RAG CHAIN ----------------

@@ -13,7 +13,8 @@ google-generativeai
 chromadb
 
 # Data Handling
-pandas
+pandas==2.2.3
+statsmodels==0.14.4
 pyarrow
 numpy
 
@@ -22,3 +23,10 @@ geopy
 
 # Utilities
 python-dotenv 
+langchain-classic
+psycopg2-binary 
+langchain-chroma
+scipy==1.13.1
+matplotlib
+seaborn 
+statsmodels 

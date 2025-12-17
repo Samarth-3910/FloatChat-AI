@@ -1,129 +1,78 @@
-# 🌊 Visual FloatChat: An AI-Powered Gateway to Ocean Data
+# 🌊 Visual FloatChat
 
-[![Hackathon](https://img.shields.io/badge/Hackathon-SIH%202025-blue.svg)](https://sih.gov.in/)
-[![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red.svg)](https://streamlit.io/)
-[![LangChain](https://img.shields.io/badge/AI-LangChain-purple.svg)](https://www.langchain.com/)
+**Visual FloatChat** is an AI-powered conversational system that makes oceanographic (ARGO float) data accessible through natural language and interactive visualizations.
 
-<p align="center">
-  <strong>Chat with the Ocean. Unlock its Secrets.</strong>
-</p>
+## 🚀 Overview
 
-<p align="center">
-  Visual FloatChat is an AI-powered conversational system that makes complex ARGO float data accessible to everyone, from researchers to enthusiasts, through natural language and interactive visualizations.
-</p>
-
----
-
----
-
-## 🎯 The Problem
-
-Oceanographic data is vast, complex, and often locked away in specialized formats like NetCDF. Analyzing this data from sources like the ARGO program requires significant domain knowledge and technical skill, creating a barrier for non-expert users who need to make data-driven decisions.
-
-## ✨ Our Solution
-
-**Visual FloatChat** bridges this gap with a two-part system:
-
-1.  **An Interactive Dashboard:** A powerful tool for visually exploring oceanographic data with maps, charts, and trend analysis.
-2.  **An AI Chat Assistant:** A conversational interface that allows users to query the data in plain English, abstracting away the complexity of database queries and data formats.
-
-Our solution ingests raw ARGO NetCDF files, processes them through an automated ETL pipeline, and serves the insights through a user-friendly web interface.
-
-## 🚀 Key Features
-
-*   **Automated Data Pipeline:** A robust Bronze → Silver → Gold pipeline that processes raw `.nc` files into a clean, query-ready Parquet and PostgreSQL format.
-*   **Conversational Chat Interface:** Ask questions in natural language, like *"What is the sea surface temperature near Miami?"* or *"Show me data for coordinates -24.1, 151.8"*.
-*   **RAG-Powered AI:** Utilizes a Retrieval-Augmented Generation (RAG) pipeline with LangChain and a Chroma vector database to provide accurate, context-aware answers.
-*   **Interactive Dashboard:** A comprehensive Streamlit dashboard for deep data exploration, featuring:
-    *   Geospatial maps (Heatmaps & Scatterplots)
-    *   Time-series trend analysis
-    *   Correlation matrices
-    *   Country-specific data filtering
-*   **Data Enrichment:** Automatically enriches data points with geographical context (Country, City) using reverse geocoding.
-
-## 🏗️ System Architecture(Medallion Architecture)
-
-Our system follows a modern data architecture to ensure scalability and maintainability.
-
-<!-- You can create a simple diagram using a tool like diagrams.net and add it here -->
- <!-- Replace with your architecture diagram image -->
-
-1.  **Bronze Layer:** Raw ARGO NetCDF files are ingested.
-2.  **Silver Layer:** Data is cleaned, standardized, and converted to Parquet format for each variable.
-3.  **Gold Layer:** All variables are merged into a single, analytics-ready Parquet file.
-4.  **Platinum Layer:** The gold data is loaded into two destinations:
-    *   **PostgreSQL:** For fast, structured queries to power the main dashboard.
-    *   **ChromaDB:** A vector database stores embeddings of the data for semantic search and the RAG pipeline.
-5.  **Backend (Flask):** A Flask server hosts the LangChain agent, which interprets user queries and retrieves data from ChromaDB.
-6.  **Frontend (Streamlit):** A single, integrated Streamlit application provides both the interactive dashboard and the chatbot interface, which communicates with the Flask backend.
+This project bridges the gap between complex NetCDF ocean data and users by providing:
+1.  **Interactive Dashboard:** For exploring maps, charts, and trends.
+2.  **AI Chat Assistant:** For querying data in plain English (e.g., *"What is the temperature near Miami?"*).
 
 ## 🛠️ Tech Stack
 
+*   **Languages:** Python 3.10+
 *   **Frontend:** Streamlit, Plotly, Folium
-*   **Backend:** Flask, LangChain
-*   **AI/ML:** Google Gemini, ChromaDB (Vector Store), Pandas, XArray
-*   **Databases:** PostgreSQL, Parquet
-*   **Languages:** Python
+*   **Backend:** Flask, LangChain, Google Gemini
+*   **Data:** PostgreSQL, ChromaDB (Vector Store), Parquet, XArray
 
-## 📸 Screenshots
+## 📂 Repository Structure
 
-#### Main Dashboard
- ![Main Dashboard Screenshot](./images/dashboard.png)
-> *The main dashboard provides a comprehensive overview with metrics, country-level statistics, and parameter distributions.*
+The project is organized into the following key directories:
 
-#### Conversational AI Chat
- ![Chatbot in Action](./images/chatbot.png)
-> *Users can query data by city name or exact coordinates and receive detailed, human-readable results.*
-
-#### Geospatial Analysis
- ![Geospatial Map of SST](./images/map.png)
-> *Visualize Sea Surface Temperature, Chlorophyll-a, and other parameters on an interactive world map.*
+*   **`AnalyticalGenAI/`**: Contains the core application logic.
+    *   `app.py`: Flask backend server for the AI assistant.
+    *   `oceanography_dashboard.py`: Streamlit frontend application.
+    *   `run.py`: Auto-runner script to launch both servers.
+    *   `chroma_db/`: Vector database storage.
+*   **`DataEngineering/`**: Contains the ETL pipeline for data processing.
+    *   `Bronze_Data/`: Storage for raw Bronze layer files.
+    *   `main.ipynb`: Main notebook running the extraction and transformation pipeline.
+    *   `silver_layer.ipynb`, `gold_layer.ipynb`: Notebooks for intermediate data processing.
+*   **`Others/`**: Supplementary files and resources.
 
 ## ⚙️ Getting Started
 
-Follow these steps to run the project locally.
-
 ### 1. Prerequisites
-*   Python 3.9+
-*   PostgreSQL database running locally.
+*   Python 3.10+
+*   PostgreSQL installed and running locally.
 
-### 2. Clone the Repository
+### 2. Installation
+Clone the repository:
 ```bash
 git clone https://github.com/Samarth-3910/FloatChat-AI
-cd visual-float-chat
+cd FloatChat-AI
 ```
 
-### 3. Set Up Environment
-Create a `.env` file in the root directory and add your Google API Key:
+### 3. Configuration
+Create a `.env` file in the root (or `AnalyticalGenAI` folder) with your API key:
 ```env
 GOOGLE_API_KEY="AIzaSy...Your...Key"
 ```
+*Note: Ensure PostgreSQL connection strings are correctly set in the scripts if needed.*
 
-### 4. Run the Data Pipeline
-*   Place your ARGO `.nc` files in the `Bronze_Data/` directory, following the structure `Bronze_Data/<year>/<month>/<variable>/`.
-*   Run the main ETL pipeline notebook (`main.ipynb`) to process the data and create the Gold Layer parquet file.
-*   Run the `posgres_table.py` script to load the generated CSV/Parquet from the Gold Layer into your PostgreSQL database.
-
-### 5. Launch the Application
-We've included an auto-runner to make launching easy! It will install dependencies and start both the backend and frontend servers.
+### 4. Run the Application
+Navigate to the application folder and use the auto-runner:
 
 ```bash
+cd AnalyticalGenAI
 python run.py
 ```
-You can now access the application at **http://localhost:8501**.
-### You can access it on **http://34.30.11.181:8501**.
-We used GCP for public access to our project.
+This script will:
+1.  Check and install requirements (`requirements.txt`).
+2.  Start the Flask backend.
+3.  Launch the Streamlit dashboard at **http://localhost:8501**.
 
-## 🔮 Future Work
-- [ ] Integrate real-time data streams from active ARGO floats.
-- [ ] Expand data sources to include BGC floats, gliders, and satellite datasets.
-- [ ] Add more advanced analytical features like anomaly detection.
+---
+*Hire us:*
 
-## 🏆 Our Team
-*   [Samarth Keshari]
-*   [Nikhil Tiwari]
-*   [Harsh Pal]
-*   [Komal Patel]
-*   []
-**Note:** This repository is intended for hackathon use only and is **not for public use**. Please respect this.
+*   [Samarth Keshari](https://www.linkedin.com/in/samarth-keshari-b61089294/)
+*   [Nikhil Tiwari](https://www.linkedin.com/in/nikhil-tiwari-90194a318/)
+*   [Harsh Pal](https://www.linkedin.com/in/harsh-pal-32247728a/)
+*   [Kapil Patel](https://www.linkedin.com/in/scorpiankapil/)
+*   [Komal Patel](https://www.linkedin.com/in/komal-patel-5b96a8239/)
+
+<br>
+
+<div align="center">
+  <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" width="400" alt="Thank You">
+</div>

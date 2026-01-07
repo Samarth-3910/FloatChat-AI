@@ -58,8 +58,6 @@ cd AnalyticalGenAI
 python run.py
 ```
 You can now access the application at **http://localhost:8501**.
-### You can access it on **http://34.30.11.181:8501**.
-We used GCP for public access to our project.
 
 ## 🔮 Future Work
 - [ ] Integrate real-time data streams from active ARGO floats.

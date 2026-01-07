@@ -54,29 +54,10 @@ st.markdown("""
 def load_data():
     """Load and preprocess the oceanography dataset from PostgreSQL"""
     
-    # PostgreSQL connection settings
-    db_user = 'postgres'
-    db_password = 'sama1234'
-    db_host = 'localhost'
-    db_port = '5432'
-    db_name = 'floatchatAI'
-    table_name = 'sample_gold_layer'
-
     # Create database engine
-    connection_string = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-    engine = create_engine(connection_string)
-    
-    # PostgreSQL connection settings
-    db_user = 'postgres'
-    db_password = 'sama1234'
-    db_host = 'localhost'
-    db_port = '5432'
-    db_name = 'floatchatAI'
+    import config
+    engine = create_engine(config.DATABASE_URI)
     table_name = 'sample_gold_layer'
-
-    # Create database engine
-    connection_string = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-    engine = create_engine(connection_string)
     
     try:
         # Read the PostgreSQL table into a DataFrame

@@ -22,8 +22,8 @@ from langchain_core.prompts import PromptTemplate
 app = Flask(__name__)
 CORS(app)
 
-# --- API KEY ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAihZb7s-J5NwfVWuvjpR_MtYprnZxjmow"
+# --- CONFIG ---
+import config
 
 # --- LLM Setup ---
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)

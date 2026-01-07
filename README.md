@@ -71,4 +71,3 @@ You can now access the application at **http://localhost:8501**.
 *   [Komal Patel]
 *   [Kapil Patel]
   
-**Note:** This repository is intended for hackathon use only and is **not for public use**. Please respect this.

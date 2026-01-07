@@ -57,22 +57,19 @@ Navigate to the application folder and use the auto-runner:
 cd AnalyticalGenAI
 python run.py
 ```
-This script will:
-1.  Check and install requirements (`requirements.txt`).
-2.  Start the Flask backend.
-3.  Launch the Streamlit dashboard at **http://localhost:8501**.
+You can now access the application at **http://localhost:8501**.
+### You can access it on **http://34.30.11.181:8501**.
+We used GCP for public access to our project.
 
----
-*Hire us:*
+## 🔮 Future Work
+- [ ] Integrate real-time data streams from active ARGO floats.
+- [ ] Expand data sources to include BGC floats, gliders, and satellite datasets.
+- [ ] Add more advanced analytical features like anomaly detection.
 
-*   [Samarth Keshari](https://www.linkedin.com/in/samarth-keshari-b61089294/)
-*   [Nikhil Tiwari](https://www.linkedin.com/in/nikhil-tiwari-90194a318/)
-*   [Harsh Pal](https://www.linkedin.com/in/harsh-pal-32247728a/)
-*   [Kapil Patel](https://www.linkedin.com/in/scorpiankapil/)
-*   [Komal Patel](https://www.linkedin.com/in/komal-patel-5b96a8239/)
-
-<br>
-
-<div align="center">
-  <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" width="400" alt="Thank You">
-</div>
+## 🏆 Our Team
+*   [Samarth Keshari]
+*   [Nikhil Tiwari]
+*   [Harsh Pal]
+*   [Komal Patel]
+*   []
+**Note:** This repository is intended for hackathon use only and is **not for public use**. Please respect this.

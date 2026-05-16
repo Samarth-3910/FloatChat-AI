@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+from dotenv import load_dotenv
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -12,8 +14,11 @@ import folium
 from streamlit_folium import folium_static
 import requests
 import warnings
-import pandas as pd
 from sqlalchemy import create_engine
+
+# Load environment variables
+load_dotenv()
+
 warnings.filterwarnings('ignore')
 
 # Page configuration

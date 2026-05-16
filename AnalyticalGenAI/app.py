@@ -32,7 +32,9 @@ if not os.getenv("GOOGLE_API_KEY"):
     print("WARNING: GOOGLE_API_KEY not found in environment or .env file.")
 
 # --- LLM Setup ---
-llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview", temperature=0)
+# Priority: use model from environment, fallback to gemini-2.5-flash
+model_name = os.getenv("GOOGLE_MODEL_NAME", "gemini-2.5-flash")
+llm = ChatGoogleGenerativeAI(model=model_name, temperature=0)
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, k=5)
 
 # ---------------- SIMPLE RAG CHAIN ----------------
@@ -40,6 +42,12 @@ class SimpleRagChain:
     def __init__(self, retriever, df):
         self.retriever = retriever
         self.df = df
+        self.db_user = os.getenv('DB_USER', 'postgres')
+        self.db_password = os.getenv('DB_PASSWORD', 'sama1234')
+        self.db_host = os.getenv('DB_HOST', 'localhost')
+        self.db_port = os.getenv('DB_PORT', '5432')
+        self.db_name = os.getenv('DB_NAME', 'floatchatAI')
+        self.table_name = 'sample_gold_layer'
         self.column_desc = {
             "lat": "Latitude",
             "lon": "Longitude",

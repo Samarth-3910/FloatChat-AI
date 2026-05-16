@@ -9,7 +9,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Database Configuration
 DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "sama1234") # Default fallback if not set, but prefer env
+DB_PASSWORD = os.getenv("DB_PASSWORD") # Removed hardcoded password for security
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME", "floatchatAI")

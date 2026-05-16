@@ -62,29 +62,23 @@ def load_data():
     db_name = 'floatchatAI'
     table_name = 'sample_gold_layer'
 
-    # Create database engine
-    connection_string = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-    engine = create_engine(connection_string)
-    
-    # PostgreSQL connection settings
-    db_user = 'postgres'
-    db_password = 'sama1234'
-    db_host = 'localhost'
-    db_port = '5432'
-    db_name = 'floatchatAI'
-    table_name = 'sample_gold_layer'
-
-    # Create database engine
-    connection_string = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-    engine = create_engine(connection_string)
-    
     try:
+        # Create database engine
+        connection_string = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
+        engine = create_engine(connection_string)
+        
         # Read the PostgreSQL table into a DataFrame
         df = pd.read_sql_table(table_name, engine)
         print(f"Successfully loaded data from table '{table_name}'.")
     except Exception as e:
-        print(f"Error reading table '{table_name}': {e}")
-        return None
+        print(f"PostgreSQL error: {e}")
+        print("Falling back to local CSV file...")
+        try:
+            df = pd.read_csv('sample_gold_layer.csv')
+            print("Successfully loaded data from 'sample_gold_layer.csv'.")
+        except Exception as e2:
+            print(f"Error reading CSV fallback: {e2}")
+            return None
 
     # Convert year and month to datetime for better time series analysis
     if 'year' in df.columns and 'month' in df.columns:

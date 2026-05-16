@@ -14,7 +14,7 @@ engine = create_engine(connection_string)
 
 # Read CSV file
 print("Reading CSV file...")
-df = pd.read_csv('D:/FloatChat/AnalyticalGenAI/sample_gold_layer.csv')
+df = pd.read_csv('sample_gold_layer.csv')
 print(f"Loaded {len(df)} rows with columns: {list(df.columns)}")
  
 # Write to PostgreSQL

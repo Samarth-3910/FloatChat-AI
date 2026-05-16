@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 # === CONFIGURATION ===
 
 # Path to your CSV file
-csv_file_path = "D:/Visual-FloatChat/smt/sample_gold_layer.csv"
+csv_file_path = "sample_gold_layer.csv"
 
 # PostgreSQL connection details
 db_user = 'postgres'

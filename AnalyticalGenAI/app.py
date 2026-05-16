@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import json
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
  
 # --- LangChain / RAG Imports ---
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -23,10 +27,12 @@ app = Flask(__name__)
 CORS(app)
 
 # --- API KEY ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAihZb7s-J5NwfVWuvjpR_MtYprnZxjmow"
+# Key is now loaded from .env file via load_dotenv()
+if not os.getenv("GOOGLE_API_KEY"):
+    print("WARNING: GOOGLE_API_KEY not found in environment or .env file.")
 
 # --- LLM Setup ---
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview", temperature=0)
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, k=5)
 
 # ---------------- SIMPLE RAG CHAIN ----------------
@@ -133,7 +139,11 @@ def _tool1_impl(user_input: str) -> str:
     Query: {user_input}
     """
     response = llm.invoke([HumanMessage(content=prompt)])
-    return response.content.strip()
+    content = response.content
+    if isinstance(content, list):
+        # Join text parts if the response is a list
+        content = "".join([part.get("text", "") if isinstance(part, dict) else str(part) for part in content])
+    return content.strip()
 
 def _tool2_impl(city_name: str) -> str:
     try:
@@ -218,7 +228,7 @@ def run_with_agent(user_input: str):
 # ---------------- INITIALIZE VECTORSTORE ----------------
 try:
     rag_chain = build_vectorstore("dummy_ocean_data.parquet")
-    print("\n✅ RAG Chain and Vectorstore initialized successfully.")
+    print("\n[OK] RAG Chain and Vectorstore initialized successfully.")
 except Exception as e:
     print(f"\nFATAL ERROR during Vectorstore initialization: {e}")
     rag_chain = None

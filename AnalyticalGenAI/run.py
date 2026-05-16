@@ -1,12 +1,3 @@
-"""
-Auto-runner for RAG Chat Assistant.
-- Checks required files
-- Installs dependencies
-- Launches Flask backend and waits until healthy
-- Launches Streamlit frontend
-- Handles shutdown gracefully
-"""
-
 import subprocess
 import sys
 import os
